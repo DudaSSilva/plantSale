@@ -1,9 +1,8 @@
 package data
 
 import (
-  "fmt"
-	"main/models"
 	"errors"
+	"main/models"
 )
 
 var clients []models.Client
@@ -20,18 +19,18 @@ func SearchClientByCpf(clientCpf string) (*models.Client, error) {
 }
 
 func SaveClient(client models.Client) []models.Client {
-	  clients = append(clients, client)
+	clients = append(clients, client)
 	return clients
 }
 
-func ViewClient(clientCpf string){
+func ViewClient(clientCpf string) (*models.Client, error) {
 
 	for _, c := range clients {
 		if c.Cpf == clientCpf {
 			c.ViewClientInformation()
-		}else{
-      fmt.Print("\nNenhuma informação para cliente cadastrada.")
-    }
+			return &c, nil
+		}
 	}
 
+	return nil, errors.New("\nNenhuma informação para cliente cadastrada.")
 }

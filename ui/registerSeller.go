@@ -1,9 +1,9 @@
 package ui
 
 import (
+	"fmt"
 	"main/data"
 	"main/models"
-	"fmt"
 )
 
 func RegisterSeller() {
@@ -16,9 +16,9 @@ func RegisterSeller() {
 	fmt.Scan(&sellerCode)
 
 	seller := models.Seller{
-		Name:        name,
+		Name:       name,
 		SellerCode: sellerCode,
 	}
-  
+
 	data.SaveSeller(seller)
 }

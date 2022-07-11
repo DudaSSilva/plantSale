@@ -1,9 +1,8 @@
 package data
 
 import (
-  "fmt"
-	"main/models"
 	"errors"
+	"main/models"
 )
 
 var plants []models.Plant
@@ -11,7 +10,6 @@ var plants []models.Plant
 func SearchPlantByName(searchedName string) (*models.Plant, error) {
 
 	for _, p := range plants {
-		// p ===== plantas[i]
 		if p.Name == searchedName {
 			return &p, nil
 		}
@@ -21,28 +19,18 @@ func SearchPlantByName(searchedName string) (*models.Plant, error) {
 }
 
 func SavePlant(plant models.Plant) []models.Plant {
-	  plants = append(plants, plant)
+	plants = append(plants, plant)
 	return plants
 }
 
-func ViewPlant(searchedName string){
+func ViewPlant(searchedName string) (*models.Plant, error) {
 
 	for _, p := range plants {
 		if p.Name == searchedName {
 			p.ViewPlantInformation()
-		}else{
-      fmt.Print("\nNenhuma informação para planta cadastrada.")
-    }
+			return &p, nil
+		}
 	}
-}
 
-func DeterminingComissionByPlantName(searchedName string) {
-
-	for _, p := range plants {
-		if p.Name == searchedName {
-      fmt.Println("Comissão do vendedor: ", p.ComissionSeller())
-		}else {
-      fmt.Println("Comissão não definida.")
-    }
-	}
+	return nil, errors.New("\nNenhuma informação para planta cadastrada.")
 }
