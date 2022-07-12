@@ -18,5 +18,5 @@ type Plant struct {
 
 func (plant Plant) ViewPlantInformation() {
 	fmt.Println("\nNome da planta: ", plant.Name, "\nCódigo da planta: ", plant.PlantCode, "\nEspécie: ", plant.Species, "\nMaterial: ", plant.Material,
-		"\nEstoque: ", plant.Inventory, "\nPreço: ", plant.Price, "\nPropriedades: ", plant.Properties, "\nComissão do vendedor: ", plant.ComissionSeller())
+		"\nEstoque: ", plant.Inventory, "\nPreço: ", plant.Price, "\nPropriedades: ", plant.Properties, "\nComissão do vendedor: ")
 }

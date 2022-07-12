@@ -3,6 +3,7 @@ package ui
 import (
 	"fmt"
 	"main/data"
+	"main/models"
 )
 
 func PlantSale() {
@@ -22,9 +23,29 @@ func PlantSale() {
 	data.ViewPlant(name)
 	data.SearchSellerByCode(sellerCode)
 	data.ViewSeller(sellerCode)
-	//data.DeterminingComissionByPlantName(name)
 	data.SearchClientByCpf(cpf)
 	data.ViewClient(cpf)
+
+	sale := models.Sale{
+		Name:       name,
+		SellerCode: sellerCode,
+		Cpf:        cpf,
+	}
+
+	plant, errorP := data.SearchPlantByName(name)
+	//_, errorS := data.SearchSellerByCode(sellerCode)
+	//_, errorC := data.SearchClientByCpf(cpf)
+	//
+	//if errorP != nil && errorS != nil && errorC != nil {
+	//	data.ViewPlant(name)
+	//	data.ViewSeller(sellerCode)
+	//	data.ViewClient(cpf)
+	//}
+
+	if errorP != nil {
+		sale.ViewComissionSeller(plant)
+	}
+
 }
 
 func SellPlant() {

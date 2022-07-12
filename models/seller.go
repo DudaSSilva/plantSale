@@ -3,8 +3,9 @@ package models
 import "fmt"
 
 type Seller struct {
-	Name        string
+	Name       string
 	SellerCode int
+	Comissao   float64
 }
 
 func (s Seller) ViewSellerInformation() {
