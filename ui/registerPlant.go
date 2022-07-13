@@ -8,7 +8,7 @@ import (
 
 func RegisterPlant() {
 	var name, species, material, properties string
-	var price float64
+	var price float32
 	var inventory int
 	var plantCode int
 

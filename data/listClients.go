@@ -22,15 +22,3 @@ func SaveClient(client models.Client) []models.Client {
 	clients = append(clients, client)
 	return clients
 }
-
-func ViewClient(clientCpf string) (*models.Client, error) {
-
-	for _, c := range clients {
-		if c.Cpf == clientCpf {
-			c.ViewClientInformation()
-			return &c, nil
-		}
-	}
-
-	return nil, errors.New("\nNenhuma informação para cliente cadastrada.")
-}

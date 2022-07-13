@@ -8,15 +8,11 @@ type Plant struct {
 	Species    string
 	Material   string
 	Inventory  int
-	Price      float64
+	Price      float32
 	Properties string
 }
 
-//func (plant Plant) ComissionSeller() float64 {
-//	return (5 / 100) * plant.Price
-//}
-
 func (plant Plant) ViewPlantInformation() {
 	fmt.Println("\nNome da planta: ", plant.Name, "\nCódigo da planta: ", plant.PlantCode, "\nEspécie: ", plant.Species, "\nMaterial: ", plant.Material,
-		"\nEstoque: ", plant.Inventory, "\nPreço: ", plant.Price, "\nPropriedades: ", plant.Properties, "\nComissão do vendedor: ")
+		"\nEstoque: ", plant.Inventory, "\nPreço: ", plant.Price, "\nPropriedades: ", plant.Properties)
 }

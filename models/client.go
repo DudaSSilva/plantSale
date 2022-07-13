@@ -4,7 +4,7 @@ import "fmt"
 
 type Client struct {
 	Name string
-	Cpf string
+	Cpf  string
 }
 
 func (c Client) ViewClientInformation() {
