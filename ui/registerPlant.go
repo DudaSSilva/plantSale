@@ -22,7 +22,7 @@ func RegisterPlant() {
 	fmt.Scan(&material)
 	fmt.Print("Planta(s) em estoque: ")
 	fmt.Scan(&inventory)
-	fmt.Print("Valor: ")
+	fmt.Print("Valor: R$ ")
 	fmt.Scan(&price)
 	fmt.Print("Propriedades da planta: ")
 	fmt.Scan(&properties)

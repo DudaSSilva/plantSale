@@ -7,10 +7,10 @@ import (
 
 var plants []models.Plant
 
-func SearchPlantByName(searchedName string) (*models.Plant, error) {
+func SearchPlantByName(searchedCodeplant int) (*models.Plant, error) {
 
 	for _, p := range plants {
-		if p.Name == searchedName {
+		if p.PlantCode == searchedCodeplant {
 			return &p, nil
 		}
 	}

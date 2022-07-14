@@ -3,22 +3,42 @@ package ui
 import (
 	"errors"
 	"fmt"
-	"main/models"
+	"main/data"
 )
 
-//type Payment struct{
-//	PaymentAmount float64
-//	Transshipment float64
-//}
+func FinishPayment() float32 {
+	var plantCode, quantPlants, i int
+	var total float32 = 0
 
-func PayPurchase(plant models.Plant) (float32, error) {
+	fmt.Print("Quantas plantas estão sendo vendidas? ")
+	fmt.Scan(&quantPlants)
+
+	for i = 0; i < quantPlants; i++ {
+		fmt.Print("Por favor, informe novamente o código da planta: ")
+		fmt.Scan(&plantCode)
+
+		plant, errorP := data.SearchPlantByName(plantCode)
+
+		if errorP == nil {
+			total += plant.Price
+		} else {
+			fmt.Print("\nErro! ", errorP)
+		}
+
+	}
+
+	return total
+
+}
+
+func PayPurchase(total float32) (float32, error) {
 	var paymentAmount, value float32
 
-	fmt.Print("\nValor pago pelo cliente: ")
+	fmt.Print("\nValor pago pelo cliente: R$ ")
 	fmt.Scan(&value)
 
-	if value >= plant.Price {
-		paymentAmount = value - plant.Price
+	if value >= total {
+		paymentAmount = value - total
 		return paymentAmount, nil
 		fmt.Printf("\n\n %f", paymentAmount)
 	}

@@ -5,8 +5,9 @@ import (
 	"main/data"
 )
 
-func SellPlant() {
+func PlantSale() {
 	var quantPlants, i int
+	var answer string
 
 	fmt.Print("\nInforme a quantidade de plantas a ser vendida: ")
 	fmt.Scan(&quantPlants)
@@ -16,45 +17,52 @@ func SellPlant() {
 		RegisterSeller()
 		RegisterClient()
 	}
+
+	fmt.Println("\nDeseja exibir informações e finalizar venda? ")
+	fmt.Scan(&answer)
+
+	if answer == "sim" {
+		SellPlant()
+	}
 }
 
-func PlantSale() {
+func SellPlant() {
 
-	var name string
+	var plantCode int
 	var cpf string
 	var sellerCode int
+	var finish string
 
-	fmt.Print("\nNome da planta: ")
-	fmt.Scan(&name)
+	fmt.Print("\nCódigo da planta: ")
+	fmt.Scan(&plantCode)
 	fmt.Print("Código do vendedor: ")
 	fmt.Scan(&sellerCode)
 	fmt.Print("Cpf do cliente: ")
 	fmt.Scan(&cpf)
 
-	//sale := models.Sale{
-	//	Name:       name,
-	//	SellerCode: sellerCode,
-	//	Cpf:        cpf,
-	//}
-
-	plant, errorP := data.SearchPlantByName(name)
+	plant, errorP := data.SearchPlantByName(plantCode)
 	seller, errorS := data.SearchSellerByCode(sellerCode)
 	client, errorC := data.SearchClientByCpf(cpf)
 
-	if plant.Name == name && seller.SellerCode == sellerCode && client.Cpf == cpf {
+	if errorP == nil && errorS == nil && errorC == nil {
 		plant.ViewPlantInformation()
 		seller.ViewSellerInformation()
-		client.ViewClientInformation()
 		saleComission, _ := ComissionSeller(*plant)
-		fmt.Println("\nComissão do vendedor: ", saleComission)
-		transshipment, _ := PayPurchase(*plant)
-		fmt.Printf("\nValor do troco: %.2f", transshipment)
-		fmt.Println("\nVenda finalizada!")
-
+		fmt.Println("Comissão do vendedor: R$ ", saleComission)
+		client.ViewClientInformation()
 	} else {
-		fmt.Print(errorP)
-		fmt.Print(errorS)
-		fmt.Print(errorC)
+		fmt.Print("\nErro! ", errorP)
+		fmt.Print("\nErro! ", errorS)
+		fmt.Print("\nErro! ", errorC)
 	}
 
+	fmt.Print("\nDigite sim para finlizar a compra: ")
+	fmt.Scan(&finish)
+
+	if finish == "sim" {
+		transshipment, _ := PayPurchase(FinishPayment())
+		fmt.Printf("Valor do troco: R$ %.2f", transshipment)
+	}
+
+	fmt.Println("\n\nVENDA FINALIZADA!")
 }

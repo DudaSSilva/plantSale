@@ -7,6 +7,10 @@ type Client struct {
 	Cpf  string
 }
 
+func NewClient(name string) *Client {
+	return &Client{Name: name}
+}
+
 func (c Client) ViewClientInformation() {
 	fmt.Println("\nNome do cliente: ", c.Name, "\nCpf do cliente: ", c.Cpf)
 }
