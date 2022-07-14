@@ -54,6 +54,9 @@ func SellPlant() {
 		fmt.Print("\nErro! ", errorP)
 		fmt.Print("\nErro! ", errorS)
 		fmt.Print("\nErro! ", errorC)
+		//Aqui, a pretensão é de que, quanto o erro existir,
+		//parar o código ou pedir para digitar as informações acima
+		//e executar o if acima novamente.
 	}
 
 	fmt.Print("\nDigite sim para finlizar a compra: ")
